@@ -8,7 +8,7 @@ def testBar(args):
 		pb.addProgress()
 	print()
 
-arguments = dict(actionsCount = 100000)
+arguments = dict(actionsCount = 50000)
 
 print("Simple progress bar :")
 testBar(arguments)
@@ -48,4 +48,17 @@ print("Front char:")
 arguments["enable_front_char"] = True
 testBar(arguments)
 arguments["front_char"] = "|"
+testBar(arguments)
+
+print("Changing the update rate :")
+arguments["update_rate"] = 10000
+testBar(arguments)
+
+# WARNING : increasing the precision with no update rate set may result
+# in the bar being reprinted at each iteration (because the percentage
+# would change every time) and thus slowing your process, it is recommended
+# to have a not to high precision compared to the number of tasks to
+# perform or to set an update rate
+print("Changing decimal precision of percentage :")
+arguments["perc_digits"] = 0
 testBar(arguments)

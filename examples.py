@@ -3,15 +3,16 @@
 
 def test_bar(args):
     import progress_bar
-    import time
+
     pb = progress_bar.ProgressBar(**args)
     pb.begin()
     for i in range(args["task_number"]):
+        # NB : you can specify a number to add more than one task here
         pb.add_progress()
-        #time.sleep(0.1)
     print()
 
-arguments = dict(task_number = 100000)
+
+arguments = dict(task_number=100000)
 
 print("Simple progress bar :")
 test_bar(arguments)
@@ -54,14 +55,17 @@ arguments["front_char"] = "|"
 test_bar(arguments)
 
 print("Changing the update rate :")
+
+# Note that changing the update rate will impact the number of visual refresh of the bar, the number of times it is
+# really updated has to be handled via the number of calls to add_progress(inc) and the number in inc
+
 arguments["update_rate"] = 10000
 test_bar(arguments)
 
-# WARNING : increasing the precision with no update rate set may result
-# in the bar being reprinted at each iteration (because the percentage
-# would change every time) and thus slowing your process, it is recommended
-# to have a not to high precision compared to the number of tasks to
-# perform or to set an update rate
+# WARNING : increasing the precision with no update rate set may result in the bar being reprinted at each iteration
+# (because the percentage would change every time) and thus slowing your process, it is recommended to have a not to
+# high precision compared to the number of tasks to perform or to set an update rate
+
 print("Changing decimal precision of percentage :")
 arguments["percent_precision"] = 0
 test_bar(arguments)

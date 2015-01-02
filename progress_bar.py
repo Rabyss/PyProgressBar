@@ -114,15 +114,3 @@ class ProgressBar:
         max_length -= 3 if (self.__display_percent and self.__display_absolute_progress) else 0
         max_length -= 2 if (self.__display_percent or self.__display_absolute_progress) else 0
         return max_length - 1
-
-
-if __name__ == "__main__":
-    print("Fast bar : ")
-    progressBar = ProgressBar(100000, bar_opening="\\", bar_ending="/", empty_char="_", filled_char="#")
-    progressBar.begin()
-    for i in range(25000):
-        progressBar.add_progress(4)
-    print("Reset then relaunch :")
-    progressBar.begin()
-    for i in range(25000):
-        progressBar.add_progress(4)

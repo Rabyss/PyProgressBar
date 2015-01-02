@@ -27,19 +27,23 @@ arguments["display_perc"] = True
 arguments["empty_char"] = " /"
 arguments["filled_char"] = ":."
 testBar(arguments)
+
 arguments["empty_char"] = "~"
 arguments["filled_char"] = "#"
 testBar(arguments)
+
 print("Custom bar with custom begin/end char :")
 arguments["bar_begins"] = "°°~<[|"
 arguments["bar_ends"] = "|]>~°°"
 arguments["empty_char"] = "-"
 arguments["filled_char"] = "="
 testBar(arguments)
+
 print("Custom shorter bar :")
 arguments["filled_char"] = "~"
 arguments["bar_length"] = 80
 testBar(arguments)
+
 print("Front char:")
 arguments["enable_front_char"] = True
 testBar(arguments)

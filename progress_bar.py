@@ -143,21 +143,12 @@ class ProgressBar:
 		return max_length
 
 if __name__ == "__main__":
-	print("Simple bar :")
-	progressBar1 = ProgressBar(100000)
-	progressBar1.begin()
-	for i in range(100000):
-		progressBar1.addProgress()
-	print("Bar with different characters :")
-	progressBar2 = ProgressBar(100000,bar_begins="\\", bar_ends="/", empty_char = "_", filled_char = "#", bar_length = 150)
-	progressBar2.begin()
-	for i in range(100000):
-		progressBar2.addProgress()
-	print("Faster bar : ")
-	progressBar3 = ProgressBar(100000,bar_begins="\\", bar_ends="/", empty_char = "_", filled_char = "#")
-	progressBar3.begin()
+	print("Fast bar : ")
+	progressBar = ProgressBar(100000,bar_begins="\\", bar_ends="/", empty_char = "_", filled_char = "#")
+	progressBar.begin()
 	for i in range(25000):
-		progressBar3.addProgress(4)
-	progressBar3.begin()
+		progressBar.addProgress(4)
+	print("Reset then relaunch :")
+	progressBar.begin()
 	for i in range(25000):
-		progressBar3.addProgress(4)
+		progressBar.addProgress(4)

@@ -11,8 +11,9 @@ def test_bar(args):
         pb.add_progress()
     print()
 
+TASK_NUMBER = 2000000
 
-arguments = dict(task_number=100000)
+arguments = dict(task_number=TASK_NUMBER)
 
 print("Simple progress bar :")
 test_bar(arguments)
@@ -59,7 +60,7 @@ print("Changing the update rate :")
 # Note that changing the update rate will impact the number of visual refresh of the bar, the number of times it is
 # really updated has to be handled via the number of calls to add_progress(inc) and the number in inc
 
-arguments["update_rate"] = 10000
+arguments["update_rate"] = TASK_NUMBER/10
 test_bar(arguments)
 
 # WARNING : increasing the precision with no update rate set may result in the bar being reprinted at each iteration

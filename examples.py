@@ -1,7 +1,7 @@
 #!/usr/bin/python3.4
-def test_bar(args):
-    import progress_bar
+import progress_bar
 
+def test_bar(args):
     pb = progress_bar.ProgressBar(**args)
     pb.begin()
     for i in range(args["task_number"]):
@@ -25,11 +25,8 @@ arguments["display_absolute_progress"] = True
 arguments["display_percent"] = False
 test_bar(arguments)
 
-print("Custom bars with custom filled/empty char, when more than one char is given, the result is truncated :")
+print("Custom bars with custom filled/empty char :")
 arguments["display_percent"] = True
-arguments["empty_char"] = " /"
-arguments["filled_char"] = ":."
-test_bar(arguments)
 
 arguments["empty_char"] = "~"
 arguments["filled_char"] = "#"

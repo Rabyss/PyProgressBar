@@ -1,31 +1,17 @@
 #!/usr/bin/python3.4
 
+import os
+
 class ProgressBar:
     def __init__(self, task_number, bar_opening="[", bar_ending="]", empty_char="-", filled_char="=",
                  update_rate=0, percent_precision=1, display_percent=True, display_absolute_progress=True, bar_length=0,
                  enable_front_char=False, front_char=">"):
-        import sys
 
         self.__task_number = task_number
         self.__bar_opening = bar_opening
         self.__bar_ending = bar_ending
-
         self.__empty_char = empty_char
-        if len(self.__empty_char) == 0:
-            print("EMPTY_CHAR must be one character.")
-            sys.exit(-1)
-        elif len(self.__empty_char) > 1:
-            print("EMPTY_CHAR truncated to size one.")
-            self.__empty_char = self.__empty_char[0]
-
         self.__filled_char = filled_char
-        if len(self.__filled_char) == 0:
-            print("FILLED_CHAR must be one character.")
-            sys.exit(-1)
-        elif len(self.__filled_char) > 1:
-            print("FILLED_CHAR truncated to size one.")
-            self.__filled_char = self.__filled_char[0]
-
         self.__update_rate = update_rate
         self.__percent_precision = str(percent_precision)
         self.__display_percent = display_percent
@@ -39,12 +25,6 @@ class ProgressBar:
         self.__enable_front_char = enable_front_char
 
         self.__front_char = front_char
-        if len(self.__front_char) == 0:
-            print("FRONT_CHAR must be one character.")
-            sys.exit(-1)
-        elif len(self.__front_char) > 1:
-            print("FRONT_CHAR truncated to size one.")
-            self.__front_char = self.__front_char[0]
 
     def begin(self):
         self.__update_count = 0
@@ -89,10 +69,10 @@ class ProgressBar:
             progresses += " : " + self.__get_progress_fraction()
         front_char = self.__front_char if (
             self.__enable_front_char and self.__current_progress < self.__task_number) else ""
-        return self.__bar_opening + self.__current_length * self.__filled_char + front_char + diff * self.__empty_char + self.__bar_ending + progresses
+        return ( self.__bar_opening + self.__current_length * self.__filled_char + front_char +
+                 diff * self.__empty_char + self.__bar_ending + progresses )
 
     def __compute_max_length(self):
-        import os
 
         sz = None
 

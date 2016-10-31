@@ -1,4 +1,4 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python3.5
 import progress_bar
 
 def test_bar(args):
@@ -9,7 +9,7 @@ def test_bar(args):
         pb.add_progress()
     print()
 
-TASK_NUMBER = 2000000
+TASK_NUMBER = 200000
 
 arguments = dict(task_number=TASK_NUMBER)
 
@@ -65,4 +65,8 @@ test_bar(arguments)
 
 print("Changing decimal precision of percentage :")
 arguments["percent_precision"] = 0
+test_bar(arguments)
+
+print("Adding a unit:")
+arguments["unit"] = "Mo"
 test_bar(arguments)

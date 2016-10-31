@@ -1,11 +1,11 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python3.5
 
 import os
 
 class ProgressBar:
     def __init__(self, task_number, bar_opening="[", bar_ending="]", empty_char="-", filled_char="=",
                  update_rate=0, percent_precision=1, display_percent=True, display_absolute_progress=True, bar_length=0,
-                 enable_front_char=False, front_char=">"):
+                 enable_front_char=False, front_char=">", unit=''):
 
         self.__task_number = task_number
         self.__bar_opening = bar_opening
@@ -16,6 +16,7 @@ class ProgressBar:
         self.__percent_precision = str(percent_precision)
         self.__display_percent = display_percent
         self.__display_absolute_progress = display_absolute_progress
+        self.__unit = ' ' + unit if len(unit) > 0 else ''
 
         if bar_length > 0:
             self.__bar_length = min(bar_length, self.__compute_max_length())
@@ -64,9 +65,9 @@ class ProgressBar:
         progresses = ""
         if self.__display_percent:
             progresses += " : " + self.__get_percent_progress()
-            progresses += " (" + self.__get_progress_fraction() + ")" if self.__display_absolute_progress else ""
+            progresses += " (" + self.__get_progress_fraction() + self.__unit + ")" if self.__display_absolute_progress else ""
         elif self.__display_absolute_progress:
-            progresses += " : " + self.__get_progress_fraction()
+            progresses += " : " + self.__get_progress_fraction() + self.__unit
         front_char = self.__front_char if (
             self.__enable_front_char and self.__current_progress < self.__task_number) else ""
         return ( self.__bar_opening + self.__current_length * self.__filled_char + front_char +
@@ -92,4 +93,5 @@ class ProgressBar:
         max_length -= 1 if int(self.__percent_precision) > 0 else 0
         max_length -= 3 if (self.__display_percent and self.__display_absolute_progress) else 0
         max_length -= 2 if (self.__display_percent or self.__display_absolute_progress) else 0
+        max_length -= len(self.__unit)
         return max_length - 1
